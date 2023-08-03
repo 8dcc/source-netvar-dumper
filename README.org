@@ -12,10 +12,12 @@ Uses netvars to get the offsets of classes in a source game. It writes to =stdou
 and to =/tmp/source-offset-finder.log=.
 
 * Configuring
-You will need to change the following settings depending on your source game:
+You might need to change the following settings depending on your source game:
 - The process name should be changed from the =process_name= variable in [[https://github.com/8dcc/source-offset-finder/blob/main/inject.sh][inject.sh]]
 - Relative location to =client.so= should be changed from the =CLIENT_SO= define in
   [[https://github.com/8dcc/source-offset-finder/blob/main/src/main.c][src/main.c]]
+- The vtable index of the =GetAllClasses= function inside =IBaseClientDLL=. For
+  black mesa it's *index 10*, for csgo it's *index 8* afaik.
 
 * Building
 
