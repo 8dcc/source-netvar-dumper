@@ -4,7 +4,7 @@ CFLAGS=-Wall -Wextra -m32 -fPIC
 LDFLAGS=
 
 OBJS=obj/main.c.o
-BIN=libPROJECT-NAME.so
+BIN=liboffsetfinder.so
 
 .PHONY: clean all inject
 
