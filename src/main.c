@@ -7,7 +7,7 @@ static bool loaded = false;
 
 __attribute__((constructor)) /* Entry point when injected */
 void load(void) {
-    printf("PROJECT-NAME injected!\n");
+    printf("source-offset-finder injected!\n");
 
     loaded = true;
 }
@@ -17,13 +17,11 @@ void unload() {
     if (!loaded)
         return;
 
-    /* TODO: Unhook stuff */
-
-    printf("PROJECT-NAME unloaded.\n\n");
+    printf("source-offset-finder unloaded.\n\n");
 }
 
 void self_unload(void) {
-    void* self = dlopen("libPROJECT-NAME.so", RTLD_LAZY | RTLD_NOLOAD);
+    void* self = dlopen("liboffsetfinder.so", RTLD_LAZY | RTLD_NOLOAD);
 
     /* Close the call we just made to dlopen() */
     dlclose(self);
