@@ -1,28 +1,21 @@
-#+title: Title
+#+title: Source offset finder
 #+options: toc:nil
 #+startup: showeverything
-#+export_file_name: ./doc/README.md
 #+author: 8dcc
 
-#+begin_comment
-*TODO:* Change PROJECT-NAME and title
-*TODO:* Change ~pidof "PROJECT-NAME"~ / ~realpath "libPROJECT-NAME.so"~ / ~PROJECT-NAME already loaded...~
-*TODO:* Change ~libPROJECT-NAME.so~ in Makefile
-*TODO:* Change PROJECT-NAME in main.c
-#+end_comment
-
-*Short description.*
+*Find class offsets for source games in linux.*
 
 #+TOC: headlines 2
 
 * Description
-Long description.
+Uses netvars to get the offsets of classes in a source game. It writes to =stdout=
+and to =/tmp/source-offset-finder.log=.
 
 * Building
 
 #+begin_src console
-$ git clone https://github.com/8dcc/PROJECT-NAME
-$ cd PROJECT-NAME
+$ git clone https://github.com/8dcc/source-offset-finder
+$ cd source-offset-finder
 $ make
 ...
 #+end_src
@@ -36,5 +29,5 @@ $ ./injector.sh
 
 ...
 
-PROJECT-NAME loaded!
+source-offset-finder loaded!
 #+end_src
