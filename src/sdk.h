@@ -82,7 +82,6 @@ typedef struct BaseClient BaseClient;
 typedef struct {
     PAD(4 * 10);
     ClientClass* (*GetAllClasses)(BaseClient* thisptr);
-    PAD(4 * 71);
 } VT_BaseClient;
 
 struct BaseClient {
