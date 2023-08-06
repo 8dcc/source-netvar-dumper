@@ -7,8 +7,9 @@
 #include "sdk.h"
 
 /* Defines that should change depending on the game */
-#define CLIENT_SO "./bms/bin/client.so"
-#define LOG_PATH  "/tmp/source-offset-finder.log"
+#define CLIENT_SO   "./bms/bin/client.so"
+#define LOG_PATH    "/tmp/source-offset-finder.log"
+#define ICLIENT_STR "VClient018"
 
 #define PRINT_TO_FILE(...)        \
     fprintf(stdout, __VA_ARGS__); \
@@ -61,7 +62,7 @@ static bool globals_init(void) {
     }
 
     /* Interfaces */
-    i_client = (BaseClient*)get_interface(h_client, "VClient018");
+    i_client = (BaseClient*)get_interface(h_client, ICLIENT_STR);
     if (!i_client || !i_client->vt) {
         fprintf(stderr, "globals_init: couldn't load i_client\n");
         return false;
