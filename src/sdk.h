@@ -3,6 +3,8 @@
 
 #include <stdint.h>
 
+#define GETALLCLASSES_IDX 10
+
 /*
  * See:
  * https://github.com/ValveSoftware/source-sdk-2013/blob/0d8dceea4310fde5706b3ce1c70609d72a38efdf/sp/src/public/dt_recv.h#L87
@@ -80,7 +82,7 @@ typedef struct ClientClass_s {
 typedef struct BaseClient BaseClient;
 
 typedef struct {
-    PAD(4 * 10);
+    PAD(4 * GETALLCLASSES_IDX);
     ClientClass* (*GetAllClasses)(BaseClient* thisptr);
 } VT_BaseClient;
 
