@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-#define GETALLCLASSES_IDX 10
+#define GETALLCLASSES_IDX 8
 
 /*
  * See:

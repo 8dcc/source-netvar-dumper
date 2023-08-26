@@ -7,9 +7,9 @@
 #include "sdk.h"
 
 /* Defines that should change depending on the game */
-#define CLIENT_SO   "./bms/bin/client.so"
+#define CLIENT_SO   "./tf/bin/client.so"
 #define LOG_PATH    "/tmp/source-offset-finder.log"
-#define ICLIENT_STR "VClient018"
+#define ICLIENT_STR "VClient017"
 
 #define PRINT_TO_FILE(...)        \
     fprintf(stdout, __VA_ARGS__); \

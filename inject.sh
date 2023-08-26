@@ -1,6 +1,6 @@
 #!/bin/bash
 
-process_name="bms_linux"
+process_name="hl2_linux"
 
 pid=$(pidof "$process_name")
 libpath=$(realpath "liboffsetfinder.so")
