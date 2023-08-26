@@ -1,3 +1,6 @@
+# Output from /tmp/
+*.log
+
 # Doxygen documentation
 /doc/html/
 /doc/latex/
