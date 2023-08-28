@@ -1,29 +1,29 @@
-#+title: Source offset finder
+#+title: Source NetVar dumper
 #+options: toc:nil
 #+startup: showeverything
 #+author: 8dcc
 
-*Find class offsets for source games in linux.*
+*NetVar offset dumper for source games in Linux.*
 
 #+TOC: headlines 2
 
 * Description
 Uses netvars to get the offsets of classes in a source game. It writes to =stdout=
-and to =/tmp/source-offset-finder.log=.
+and to =/tmp/source-netvar-dumper.log=.
 
 * Configuring
 You might need to change the following settings depending on your source game:
-- The process name should be changed from the =process_name= variable in [[https://github.com/8dcc/source-offset-finder/blob/main/inject.sh][inject.sh]]
+- The process name should be changed from the =process_name= variable in [[https://github.com/8dcc/source-netvar-dumper/blob/main/inject.sh][inject.sh]]
 - Relative location to =client.so= should be changed from the =CLIENT_SO= define in
-  [[https://github.com/8dcc/source-offset-finder/blob/main/src/main.c][src/main.c]]
+  [[https://github.com/8dcc/source-netvar-dumper/blob/main/src/main.c][src/main.c]]
 - The vtable index of the =GetAllClasses= function inside =IBaseClientDLL=. For
   black mesa it's *index 10*, for csgo it's *index 8* afaik.
 
 * Building
 
 #+begin_src console
-$ git clone https://github.com/8dcc/source-offset-finder
-$ cd source-offset-finder
+$ git clone https://github.com/8dcc/source-netvar-dumper
+$ cd source-netvar-dumper
 $ make
 ...
 #+end_src
@@ -37,5 +37,5 @@ $ ./injector.sh
 
 ...
 
-source-offset-finder loaded!
+source-netvar-dumper loaded!
 #+end_src

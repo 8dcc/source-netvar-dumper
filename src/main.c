@@ -8,7 +8,7 @@
 
 /* Defines that should change depending on the game */
 #define CLIENT_SO   "./tf/bin/client.so"
-#define LOG_PATH    "/tmp/source-offset-finder.log"
+#define LOG_PATH    "/tmp/source-netvar-dumper.log"
 #define ICLIENT_STR "VClient017"
 
 #define PRINT_TO_FILE(...)        \
@@ -113,7 +113,7 @@ static void netvars_dump(void) {
 /*----------------------------------------------------------------------------*/
 
 void self_unload(void) {
-    void* self = dlopen("liboffsetfinder.so", RTLD_LAZY | RTLD_NOLOAD);
+    void* self = dlopen("libnetvardumper.so", RTLD_LAZY | RTLD_NOLOAD);
 
     /* Close the call we just made to dlopen() */
     dlclose(self);
@@ -124,11 +124,11 @@ void self_unload(void) {
 
 __attribute__((constructor)) /* Entry point when injected */
 void load(void) {
-    /* Get file descriptor for /tmp/source-offset-finder.log */
+    /* Get file descriptor for /tmp/source-netvar-dumper.log */
     log_fd = fopen(LOG_PATH, "w+");
 
     PRINT_TO_FILE("======================================================\n"
-                  "https://github.com/8dcc/source-offset-finder\n\n"
+                  "https://github.com/8dcc/source-netvar-dumper\n\n"
                   "Dumping offsets for \"" CLIENT_SO "\"\n"
                   "======================================================\n\n");
 
@@ -139,11 +139,14 @@ void load(void) {
 
     netvars_dump();
 
-    puts("[source-offset-finder] All done! Check " LOG_PATH);
+    puts("[source-netvar-dumper] All done! Check " LOG_PATH);
 
     fclose(log_fd);
 
     loaded = true;
+
+    puts("Uninjecting...");
+    self_unload();
 }
 
 __attribute__((destructor)) /* Entry point when unloaded */
@@ -151,5 +154,5 @@ void unload() {
     if (!loaded)
         return;
 
-    printf("source-offset-finder unloaded.\n\n");
+    printf("source-netvar-dumper unloaded.\n\n");
 }
