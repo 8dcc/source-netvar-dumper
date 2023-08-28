@@ -113,7 +113,10 @@ static void netvars_dump(void) {
 /*----------------------------------------------------------------------------*/
 
 void self_unload(void) {
+    /* NOTE: See 8dcc/tf2-cheat for more info on why this might crash */
     void* self = dlopen("libnetvardumper.so", RTLD_LAZY | RTLD_NOLOAD);
+    if (!self)
+        return;
 
     /* Close the call we just made to dlopen() */
     dlclose(self);
