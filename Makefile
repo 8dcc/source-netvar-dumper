@@ -4,7 +4,7 @@ CFLAGS=-Wall -Wextra -m32 -fPIC
 LDFLAGS=
 
 OBJS=obj/main.c.o
-BIN=liboffsetfinder.so
+BIN=libnetvardumper.so
 
 .PHONY: clean all inject
 

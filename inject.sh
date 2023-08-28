@@ -3,7 +3,7 @@
 process_name="hl2_linux"
 
 pid=$(pidof "$process_name")
-libpath=$(realpath "liboffsetfinder.so")
+libpath=$(realpath "libnetvardumper.so")
 
 if [ "$pid" == "" ]; then
    echo "inject.sh: process not running."
@@ -32,7 +32,7 @@ if [ "$1" == "unload" ]; then
 fi
 
 if grep -q "$libpath" "/proc/$pid/maps"; then
-    echo -e "source-offset-finder already loaded. Reloading...\n";
+    echo -e "source-netvar-dumper already loaded. Reloading...\n";
 
     # 0x2 -> RTLD_NOW
     # 0x6 -> RTLD_LAZY | RTLD_NOLOAD
