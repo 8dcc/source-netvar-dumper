@@ -7,7 +7,7 @@
 #include "sdk.h"
 
 /* Defines that should change depending on the game */
-#define CLIENT_SO   "./tf/bin/client.so"
+#define CLIENT_SO   "./tf/bin/linux64/client.so"
 #define LOG_PATH    "/tmp/source-netvar-dumper.log"
 #define ICLIENT_STR "VClient017"
 

@@ -1,6 +1,6 @@
 
 CC=gcc
-CFLAGS=-Wall -Wextra -m32 -fPIC
+CFLAGS=-Wall -Wextra -fPIC
 LDFLAGS=
 
 OBJS=obj/main.c.o
