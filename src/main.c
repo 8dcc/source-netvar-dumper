@@ -147,9 +147,6 @@ void load(void) {
     fclose(log_fd);
 
     loaded = true;
-
-    puts("Uninjecting...");
-    self_unload();
 }
 
 __attribute__((destructor)) /* Entry point when unloaded */
