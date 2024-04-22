@@ -10,7 +10,7 @@
  * https://github.com/ValveSoftware/source-sdk-2013/blob/0d8dceea4310fde5706b3ce1c70609d72a38efdf/sp/src/public/dt_recv.h#L87
  */
 
-typedef enum {
+typedef enum ESendPropType {
     INT = 0,
     FLOAT,
     VECTOR,
@@ -20,22 +20,8 @@ typedef enum {
     DATATABLE,
     INT64,
     SENDPROPTYPEMAX
-} SendPropType;
+} ESendPropType;
 
-typedef struct DataVariant_s { /* struct unions 4ever */
-    union {
-        float Float;
-        long Int;
-        char* String;
-        void* Data;
-        float Vector[3];
-        int64_t Int64;
-    };
-
-    SendPropType type;
-} DataVariant;
-
-typedef struct RecvProp_s RecvProp;
 typedef struct RecvTable_s {
     struct RecvProp_s* props;
     int propsCount;
@@ -47,12 +33,12 @@ typedef struct RecvTable_s {
 
 typedef struct RecvProp_s {
     char* varName;
-    SendPropType recvType;
+    ESendPropType recvType;
     int flags;
     int stringBufferSize;
     bool insideArray;
     const void* extraData;
-    RecvProp* arrayProp;
+    struct RecvProp_s* arrayProp;
     void* arrayLengthProxyFn;
     void* proxyFn;
     void* dataTableProxyFn;
