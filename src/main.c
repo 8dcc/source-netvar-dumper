@@ -11,9 +11,11 @@
 #define LOG_PATH    "/tmp/source-netvar-dumper.log"
 #define ICLIENT_STR "VClient017"
 
-#define PRINT_TO_FILE(...)        \
-    fprintf(stdout, __VA_ARGS__); \
-    fprintf(log_fd, __VA_ARGS__);
+#define PRINT_TO_FILE(...)            \
+    do {                              \
+        fprintf(stdout, __VA_ARGS__); \
+        fprintf(log_fd, __VA_ARGS__); \
+    } while (0)
 
 /*----------------------------------------------------------------------------*/
 
@@ -74,6 +76,9 @@ static bool globals_init(void) {
 /* Called from netvars_init and from itself (recursive) */
 static void dump_client_class(const char* network_name, RecvTable* table,
                               uint32_t offset) {
+    static const int indent_step = 4;
+    static int indent            = 0;
+
     for (int i = 0; i < table->propsCount; i++) {
         /* Store address of prop at index i in the table->props array */
         const RecvProp* prop = &table->props[i];
@@ -85,12 +90,22 @@ static void dump_client_class(const char* network_name, RecvTable* table,
         if (!strcmp(prop->varName, "baseclass"))
             continue;
 
+        for (int j = 0; j < indent; j++)
+            PRINT_TO_FILE(" ");
+
         /* If this is a datatable, there are more props so we dump again
-         * recursively with the new offset */
+         * recursively with the new offset. Increase indentation to show a
+         * "tree" view. */
         if (prop->recvType == DATATABLE && prop->dataTable &&
-            prop->dataTable->tableName[0] == 'D')
-            dump_client_class(network_name, prop->dataTable,
+            prop->dataTable->tableName[0] == 'D') {
+            PRINT_TO_FILE("%s->%s : 0x%X (PARENT)\n", network_name,
+                          prop->varName, offset + prop->offset);
+
+            indent += indent_step;
+            dump_client_class(prop->varName, prop->dataTable,
                               offset + prop->offset);
+            indent -= indent_step;
+        }
 
         /* Print our shit to stdout and file */
         PRINT_TO_FILE("%s->%s : 0x%X\n", network_name, prop->varName,
