@@ -1,6 +1,6 @@
 #!/bin/bash
 
-process_name="tf_linux64"
+process_name="hl2_linux"
 
 pid=$(pidof "$process_name")
 libpath=$(realpath "libnetvardumper.so")
